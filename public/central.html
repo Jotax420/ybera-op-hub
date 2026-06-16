@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Central Operacional Ybera</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    /* ── ZONA ESCURA — Header e Hero (identidade Ybera Group) ── */
+    --dark-bg:          #252323;
+    --dark-surface:     #2B2929;
+    --dark-border:      #3D3B3B;
+    --dark-border-mid:  #4A4747;
+    --dark-text:        #F5F5F5;
+    --dark-text-sec:    #B8B8B8;
+    --dark-text-muted:  #8F8F8F;
+    --dark-text-faint:  #5E5C5C;
+    --dark-accent:      #FFFFFF;
+
+    /* ── ZONA CLARA — Toolbar, cards e área funcional ── */
+    --light-bg:         #F4F4F2;
+    --light-surface:    #FFFFFF;
+    --light-border:     #E0DFDD;
+    --light-border-mid: #C8C7C5;
+    --light-text:       #1A1918;
+    --light-text-sec:   #3D3C3A;
+    --light-text-muted: #6B6A68;
+    --light-text-faint: #9E9D9B;
+
+    /* ── ÍCONES DOS CARDS — tons discretos por categoria ── */
+    --icon-bg-blue:   #EBF2FA;  --icon-fg-blue:   #2563A8;
+    --icon-bg-teal:   #E5F5EF;  --icon-fg-teal:   #1A7A57;
+    --icon-bg-amber:  #FDF4E3;  --icon-fg-amber:  #B45309;
+    --icon-bg-purple: #F0EEFA;  --icon-fg-purple: #5B3FCB;
+    --icon-bg-gray:   #EBEBEA;  --icon-fg-gray:   #4A4947;
+
+    --font: 'Inter', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font);
+    background: var(--light-bg);
+    color: var(--light-text);
+    min-height: 100vh;
+    line-height: 1.5;
+  }
+
+  /* ── HEADER — zona escura premium ── */
+  header {
+    background: var(--dark-surface);
+    color: var(--dark-text);
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid var(--dark-border);
+  }
+
+  .header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    height: 60px;
+  }
+
+  .logo-mark {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  .logo-ybera {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--dark-accent);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .logo-group {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--dark-text-sec);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-left: 7px;
+  }
+
+  .header-divider {
+    width: 1px;
+    height: 20px;
+    background: var(--dark-border-mid);
+    margin: 0 1rem;
+  }
+
+  .header-title {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--dark-text-muted);
+    letter-spacing: 0.05em;
+  }
+
+  .header-spacer { flex: 1; }
+
+  .header-badge {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--dark-text-muted);
+    border: 1px solid var(--dark-border-mid);
+    padding: 4px 12px;
+    border-radius: 2px;
+    background: transparent;
+  }
+
+  /* ── HERO — zona escura premium ── */
+  .hero {
+    background: var(--dark-bg);
+    color: var(--dark-text);
+    padding: 1.25rem 2rem 1rem;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 3px solid var(--light-bg);
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse 50% 100% at 100% 50%, rgba(255,255,255,0.015) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .scanner-line {
+    position: absolute;
+    top: 0; left: -100%;
+    width: 60%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    animation: scan 7s ease-in-out infinite;
+  }
+
+  @keyframes scan {
+    0%   { left: -60%; opacity: 0; }
+    10%  { opacity: 1; }
+    90%  { opacity: 1; }
+    100% { left: 110%; opacity: 0; }
+  }
+
+  .hero-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .hero-left { flex: 1; min-width: 280px; }
+
+  .hero-eyebrow {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--dark-text-faint);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    width: 18px;
+    height: 1px;
+    background: var(--dark-border-mid);
+  }
+
+  .hero h1 {
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 700;
+    color: var(--dark-text);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.5rem;
+  }
+
+  .hero h1 span {
+    color: var(--dark-accent);
+    font-weight: 300;
+  }
+
+  .hero-sub {
+    font-size: 0.875rem;
+    color: var(--dark-text-muted);
+    line-height: 1.65;
+    max-width: 480px;
+  }
+
+  /* Stats à direita do hero */
+  .hero-stats {
+    display: flex;
+    gap: 0;
+    flex-shrink: 0;
+  }
+
+  .hero-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 0 1.5rem;
+    border-right: 1px solid var(--dark-border);
+    text-align: center;
+  }
+
+  .hero-stat:first-child { padding-left: 0; }
+
+  .hero-stat:last-child {
+    border-right: none;
+    padding-right: 0;
+  }
+
+  .hero-stat-value {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--dark-accent);
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+
+  .hero-stat-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--dark-text-muted);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  /* ── TOOLBAR — zona clara ── */
+  .toolbar {
+    background: var(--light-bg);
+    border-bottom: 1px solid var(--light-border);
+    padding: 0 2rem;
+    position: sticky;
+    top: 60px;
+    z-index: 90;
+  }
+
+  .toolbar-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 0;
+    flex-wrap: wrap;
+    row-gap: 0.5rem;
+  }
+
+  .search-box {
+    position: relative;
+    flex: 1;
+    min-width: 200px;
+    max-width: 280px;
+  }
+
+  .search-box svg {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--light-text-faint);
+    pointer-events: none;
+  }
+
+  .search-box input {
+    width: 100%;
+    padding: 7px 12px 7px 32px;
+    border: 1px solid var(--light-border-mid);
+    border-radius: 6px;
+    font-family: var(--font);
+    font-size: 13px;
+    color: var(--light-text);
+    background: var(--light-surface);
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+
+  .search-box input:focus {
+    border-color: #888;
+    box-shadow: 0 0 0 3px rgba(0,0,0,0.06);
+  }
+
+  .search-box input::placeholder { color: var(--light-text-faint); }
+
+  .filter-label {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--light-text-faint);
+    white-space: nowrap;
+  }
+
+  .filters { display: flex; gap: 4px; flex-wrap: wrap; }
+
+  .filter-btn {
+    padding: 5px 13px;
+    border-radius: 6px;
+    border: 1px solid var(--light-border-mid);
+    background: var(--light-surface);
+    font-family: var(--font);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--light-text-muted);
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+
+  .filter-btn:hover {
+    border-color: #999;
+    color: var(--light-text-sec);
+    background: #fff;
+  }
+
+  .filter-btn.active {
+    background: var(--dark-surface);
+    border-color: var(--dark-surface);
+    color: #fff;
+    font-weight: 600;
+  }
+
+  /* ── MAIN — zona clara ── */
+  main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 2rem 4rem;
+  }
+
+  .section-header {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+  }
+
+  .section-header h2 {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--light-text-muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .result-count {
+    font-size: 12px;
+    color: var(--light-text-faint);
+    font-weight: 400;
+  }
+
+  /* ── CARDS GRID ── */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1rem;
+  }
+
+  /* ── APP CARD — zona clara ── */
+  .app-card {
+    background: var(--light-surface);
+    border: 1px solid var(--light-border);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+    transition: box-shadow 0.2s, transform 0.2s;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .app-card:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1), 0 2px 6px rgba(0,0,0,0.06);
+    transform: translateY(-2px);
+  }
+
+  .app-card.disabled { opacity: 0.82; }
+
+  /* ── CARD HEADER STRIP ── */
+  .card-illustration {
+    height: 58px;
+    display: flex;
+    align-items: center;
+    padding: 0 1.25rem;
+    gap: 12px;
+    border-bottom: 1px solid var(--light-border);
+    position: relative;
+    overflow: hidden;
+    background: #FAFAF9;
+  }
+
+  /* Variantes de cor discreta por categoria */
+  .card-illustration.color-blue   { background: #F0F6FD; }
+  .card-illustration.color-teal   { background: #EFF8F4; }
+  .card-illustration.color-amber  { background: #FDF8EF; }
+  .card-illustration.color-purple { background: #F5F2FD; }
+  .card-illustration.color-gray   { background: #F5F5F4; }
+
+  .card-ill-icon {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 32px;
+    opacity: 0.1;
+    pointer-events: none;
+  }
+
+  .card-ill-main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    position: relative;
+    z-index: 1;
+    flex-shrink: 0;
+  }
+
+  .card-ill-main.color-blue   { background: var(--icon-bg-blue); }
+  .card-ill-main.color-blue   svg { color: var(--icon-fg-blue); }
+  .card-ill-main.color-teal   { background: var(--icon-bg-teal); }
+  .card-ill-main.color-teal   svg { color: var(--icon-fg-teal); }
+  .card-ill-main.color-amber  { background: var(--icon-bg-amber); }
+  .card-ill-main.color-amber  svg { color: var(--icon-fg-amber); }
+  .card-ill-main.color-purple { background: var(--icon-bg-purple); }
+  .card-ill-main.color-purple svg { color: var(--icon-fg-purple); }
+  .card-ill-main.color-gray   { background: var(--icon-bg-gray); }
+  .card-ill-main.color-gray   svg { color: var(--icon-fg-gray); }
+
+  .card-ill-label {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--light-text-muted);
+    letter-spacing: 0.01em;
+  }
+
+  /* ── CARD BODY ── */
+  .card-body {
+    padding: 1.25rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+  }
+
+  .card-category {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--light-text-faint);
+    letter-spacing: 0.02em;
+  }
+
+  /* ── STATUS BADGES — legíveis e elegantes ── */
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 20px;
+  }
+
+  .status-badge::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* Ativo — verde suave e bem legível */
+  .status-ativo {
+    background: #E8F5EE;
+    color: #1A6B3C;
+    border: 1px solid #C3E6D1;
+  }
+  .status-ativo::before { background: #2A9D5C; }
+
+  /* Link pendente — azul acinzentado: app pronto, sem URL ainda */
+  .status-link-pendente {
+    background: #EEF3FB;
+    color: #2A4D8A;
+    border: 1px solid #C0D1EF;
+  }
+  .status-link-pendente::before { background: #3B6CC7; }
+
+  /* Em teste — âmbar suave */
+  .status-teste {
+    background: #FEF5E7;
+    color: #7A4C00;
+    border: 1px solid #F9D9A0;
+  }
+  .status-teste::before { background: #D97706; }
+
+  /* Em desenvolvimento — cinza neutro */
+  .status-dev {
+    background: #F2F2F0;
+    color: #5A5958;
+    border: 1px solid #DDDCDA;
+  }
+  .status-dev::before {
+    background: #9E9D9B;
+    animation: pulse-dev 2.5s ease-in-out infinite;
+  }
+
+  @keyframes pulse-dev {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.35; }
+  }
+
+  .card-name {
+    font-size: 0.975rem;
+    font-weight: 700;
+    color: var(--light-text);
+    margin-bottom: 0.45rem;
+    line-height: 1.3;
+  }
+
+  .card-desc {
+    font-size: 13px;
+    color: var(--light-text-muted);
+    line-height: 1.65;
+    flex: 1;
+    margin-bottom: 1.25rem;
+  }
+
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid var(--light-border);
+    padding-top: 1rem;
+    margin-top: auto;
+  }
+
+  .card-cat-pill {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--light-text-faint);
+    background: transparent;
+    border: none;
+    padding: 0;
+  }
+
+  /* ── BOTÕES ── */
+  .btn-open {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 16px;
+    border-radius: 6px;
+    font-family: var(--font);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+    text-decoration: none;
+    border: none;
+    letter-spacing: 0.01em;
+  }
+
+  .btn-open.primary {
+    background: var(--dark-surface);
+    color: #fff;
+    border: none;
+  }
+
+  .btn-open.primary:hover {
+    background: var(--dark-bg);
+    transform: translateX(2px);
+  }
+
+  .btn-open.primary svg { transition: transform 0.15s; }
+  .btn-open.primary:hover svg { transform: translateX(3px); }
+
+  .btn-open.disabled-btn {
+    background: #F2F2F0;
+    border: 1px solid var(--light-border-mid);
+    color: var(--light-text-faint);
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  /* ── EMPTY STATE ── */
+  .empty-state {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+    color: var(--light-text-faint);
+    text-align: center;
+    grid-column: 1 / -1;
+  }
+
+  .empty-state svg { margin-bottom: 1rem; opacity: 0.35; }
+  .empty-state p { font-size: 13px; color: var(--light-text-muted); }
+
+  /* ── FOOTER — zona escura, discreta ── */
+  footer {
+    background: var(--dark-surface);
+    border-top: 1px solid var(--dark-border);
+    color: var(--dark-text-faint);
+    padding: 1.25rem 2rem;
+    text-align: center;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+  }
+
+  footer strong {
+    color: var(--dark-text-sec);
+    font-weight: 600;
+  }
+
+  footer .footer-accent { color: var(--dark-text-muted); }
+
+  /* ── SEPARADORES E GRUPOS DA TOOLBAR ── */
+  .toolbar-sep {
+    width: 1px;
+    height: 22px;
+    background: var(--light-border-mid);
+    flex-shrink: 0;
+    margin: 0 0.25rem;
+  }
+
+  .filter-group {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex-wrap: wrap;
+  }
+
+  .filter-group-label {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--light-text-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+    margin-right: 3px;
+  }
+
+  /* ── SEÇÃO APPS PRINCIPAIS ── */
+  .featured-section { margin-bottom: 2rem; }
+
+  .featured-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--light-text-muted);
+    margin-bottom: 0.75rem;
+  }
+
+  .featured-label::before {
+    content: '';
+    width: 3px;
+    height: 13px;
+    background: var(--dark-surface);
+    border-radius: 2px;
+  }
+
+  .featured-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1rem;
+    margin-bottom: 0;
+  }
+
+  .featured-grid .app-card {
+    border-top: 2px solid var(--dark-surface);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    .hero { padding: 1.25rem 1.25rem 1.25rem; }
+    .hero-inner { flex-direction: column; align-items: flex-start; gap: 1.25rem; }
+    .hero h1 { font-size: 1.3rem; }
+    .hero-stats { gap: 0; flex-wrap: nowrap; overflow-x: auto; }
+    .hero-stat { padding: 0 1rem; }
+    .hero-stat:first-child { padding-left: 0; }
+    .toolbar { padding: 0 1.25rem; }
+    main { padding: 1.5rem 1.25rem 3rem; }
+    .cards-grid { grid-template-columns: 1fr; gap: 0.75rem; }
+    .featured-grid { grid-template-columns: 1fr; gap: 0.75rem; }
+    .header-inner { padding: 0 1.25rem; }
+    .header-title { display: none; }
+  }
+
+  @media (max-width: 860px) {
+    .toolbar-inner { gap: 0.5rem; }
+    .search-box { max-width: 100%; flex: 1 1 100%; }
+    .filter-label { display: none; }
+    .toolbar-sep { display: none; }
+  }
+
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a href="#" class="logo-mark">
+      <span class="logo-ybera">Ybera</span><span class="logo-group">Group</span>
+    </a>
+    <div class="header-divider"></div>
+    <div class="header-title">Central Operacional</div>
+    <div class="header-spacer"></div>
+    <div class="header-badge">Portal Interno</div>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="scanner-line"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-eyebrow">Sistema de Gestão Logística · Ybera Group</div>
+      <h1>Central Operacional <span>Ybera</span></h1>
+      <p class="hero-sub">Ferramentas internas para apoio à operação logística, WMS, estoque, recebimento e expedição.</p>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-value" id="stat-total">6</div>
+        <div class="hero-stat-label">Apps</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value" id="stat-ativos">2</div>
+        <div class="hero-stat-label">Ativos</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value" id="stat-teste">2</div>
+        <div class="hero-stat-label">Em teste</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value" id="stat-dev">2</div>
+        <div class="hero-stat-label">Em dev</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TOOLBAR -->
+<div class="toolbar">
+  <div class="toolbar-inner">
+    <div class="search-box">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+      </svg>
+      <input type="text" id="searchInput" placeholder="Buscar ferramenta…" autocomplete="off">
+    </div>
+    <div class="toolbar-sep"></div>
+    <div class="filter-group">
+      <span class="filter-group-label">Categoria</span>
+      <button class="filter-btn active" data-type="cat" data-val="Todos">Todos</button>
+      <button class="filter-btn" data-type="cat" data-val="Consulta">Consulta</button>
+      <button class="filter-btn" data-type="cat" data-val="Validação">Validação</button>
+      <button class="filter-btn" data-type="cat" data-val="Indicadores">Indicadores</button>
+      <button class="filter-btn" data-type="cat" data-val="Suporte">Suporte</button>
+      <button class="filter-btn" data-type="cat" data-val="Operação">Operação</button>
+    </div>
+    <div class="toolbar-sep"></div>
+    <div class="filter-group">
+      <span class="filter-group-label">Status</span>
+      <button class="filter-btn active" data-type="status" data-val="Todos">Todos</button>
+      <button class="filter-btn" data-type="status" data-val="Ativo">Ativo</button>
+      <button class="filter-btn" data-type="status" data-val="Em teste">Em teste</button>
+      <button class="filter-btn" data-type="status" data-val="Em desenvolvimento">Em dev</button>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<main>
+  <!-- Apps principais (fixo, sempre visível) -->
+  <div class="featured-section" id="featuredSection">
+    <div class="featured-label">Apps principais</div>
+    <div class="featured-grid" id="featuredGrid"></div>
+  </div>
+
+  <!-- Todas as ferramentas -->
+  <div class="section-header">
+    <h2>Todas as ferramentas</h2>
+    <span class="result-count" id="resultCount"></span>
+  </div>
+
+  <div class="cards-grid" id="cardsGrid">
+    <!-- Cards injetados via JS -->
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <strong>Ybera Group</strong>
+  &nbsp;&middot;&nbsp; <span class="footer-accent">Central Operacional</span>
+  &nbsp;&middot;&nbsp; Portal interno de ferramentas operacionais
+  &nbsp;&middot;&nbsp; v1.0
+</footer>
+
+<script>
+/* ================================================================
+   CENTRAL OPERACIONAL YBERA — v1.0
+   ================================================================
+   FONTE ÚNICA DE DADOS: edite apenas este array para manter o portal.
+
+   CAMPOS DE CADA APP:
+   - id            : número único
+   - name          : nome do app
+   - category      : categoria para filtro (Consulta | Validação | Indicadores | Suporte | Operação)
+   - categoryTag   : rótulo detalhado exibido no card
+   - status        : "Ativo" | "Em teste" | "Em desenvolvimento"
+   - description   : texto descritivo do card
+   - url           : string com o link real, ou null se ainda sem link
+   - isEnabled     : true  → botão "Abrir app" ativo
+                     false → botão "Link pendente" desabilitado
+   - isFeatured    : true → aparece também na seção "Apps principais"
+   - color         : "blue" | "teal" | "amber" | "purple" | "gray"
+   - icon          : SVG inline do ícone principal
+   - bgIcon        : emoji decorativo de fundo
+
+   PARA ADICIONAR UM NOVO APP: insira um novo objeto neste array.
+   PARA ATIVAR UM LINK: defina url: "https://..." e isEnabled: true.
+   ================================================================ */
+
+const APPS = [
+  /* ================================================================
+     CENTRAL OPERACIONAL YBERA — v1.1
+     ================================================================
+     FONTE ÚNICA DE DADOS — edite apenas este array.
+
+     CAMPOS:
+       id          : número único sequencial
+       name        : nome do app exibido no card
+       category    : grupo do filtro (Consulta | Validação | Indicadores | Suporte | Operação)
+       categoryTag : rótulo detalhado na faixa do card
+       status      : "Ativo" | "Em teste" | "Em desenvolvimento"
+       description : texto descritivo do card
+       url         : link real (string) ou null
+       isEnabled   : true = botão "Abrir app" ativo | false = botão desabilitado
+       isFeatured  : true = aparece na seção "Apps principais"
+       color       : "blue" | "teal" | "amber" | "purple" | "gray" | "indigo" | "rose"
+       icon        : SVG inline do ícone principal
+       bgIcon      : emoji decorativo de fundo (baixa opacidade)
+
+     PARA ADICIONAR UM NOVO APP:
+       Insira um novo objeto aqui com id sequencial.
+
+     PARA ATIVAR UM LINK:
+       1. Defina url: "https://..."
+       2. Defina isEnabled: true
+       3. O status muda automaticamente para "Ativo" no visual.
+     ================================================================ */
+
+  {
+    id: 1,
+    name: "WMS Guide Pro",
+    category: "Consulta",
+    categoryTag: "Consulta / Conhecimento",
+    status: "Ativo",
+    description: "Manual inteligente para consulta de telas, procedimentos, erros, fluxos guiados, regras críticas e base de conhecimento do WMS.",
+    url: "https://wms-guide-pro.lovable.app/",
+    isEnabled: true,
+    isFeatured: true,
+    color: "blue",
+    icon: `<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><path d="M8 7h8M8 11h8M8 15h5"/></svg>`,
+    bgIcon: "📚"
+  },
+  {
+    id: 2,
+    name: "DocaFlow",
+    category: "Operação",
+    categoryTag: "Recebimento / Agendamento",
+    status: "Ativo",
+    description: "Sistema para controle de agendamentos, recebimentos, docas, status operacionais e acompanhamento do fluxo de cargas.",
+    url: "https://docaflow.lovable.app/login",
+    isEnabled: true,
+    isFeatured: true,
+    color: "teal",
+    icon: `<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>`,
+    bgIcon: "🚛"
+  },
+  {
+    id: 3,
+    name: "Validador de Endereços WMS",
+    category: "Validação",
+    categoryTag: "Validação / Estoque",
+    status: "Ativo",
+    description: "Ferramenta para importar planilhas extraídas do WMS e identificar inconsistências de endereço, SKU, lote, local e duplicidades operacionais.",
+    url: "https://wms-spotlight-app.lovable.app/",
+    isEnabled: true,
+    isFeatured: true,
+    color: "teal",
+    icon: `<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>`,
+    bgIcon: "📍"
+  },
+  {
+    id: 4,
+    name: "Dashboard de Ocupação G9",
+    category: "Indicadores",
+    categoryTag: "Indicadores / Ocupação",
+    status: "Ativo",
+    description: "Dashboard para acompanhamento da ocupação do G9, permitindo visualizar locais ocupados, livres e indicadores de capacidade operacional.",
+    url: "https://odair797.github.io/dashboard-gyp-g9/",
+    isEnabled: true,
+    isFeatured: false,
+    color: "purple",
+    icon: `<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>`,
+    bgIcon: "🏭"
+  },
+  {
+    id: 5,
+    name: "Farol Operacional",
+    category: "Indicadores",
+    categoryTag: "Indicadores / Operação",
+    status: "Ativo",
+    description: "Painel visual para acompanhamento de recebimentos, expedições, pendências, atrasos e status operacionais.",
+    url: "https://odair797.github.io/dashboard-ordens/",
+    isEnabled: true,
+    isFeatured: true,
+    color: "blue",
+    icon: `<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>`,
+    bgIcon: "📊"
+  },
+  {
+    id: 6,
+    name: "Dashboard de Acuracidade de Estoque",
+    category: "Indicadores",
+    categoryTag: "Indicadores / Estoque",
+    status: "Ativo",
+    description: "Dashboard para acompanhamento da acuracidade de estoque, apoiando análises de divergências, consistência sistêmica e confiabilidade dos saldos.",
+    url: "https://odair797.github.io/dashboard-acuracidade/",
+    isEnabled: true,
+    isFeatured: false,
+    color: "blue",
+    icon: `<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>`,
+    bgIcon: "📈"
+  },
+  {
+    id: 7,
+    name: "Validador de Produtos Vencidos — Estoque 1100",
+    category: "Validação",
+    categoryTag: "Validação / Qualidade",
+    status: "Ativo",
+    description: "Analisa produtos do setor 1100 e identifica itens com validade vencida, exibindo SKU, nome, lote, local, data de vencimento e dias vencido.",
+    url: "https://fresh-sector-check.lovable.app/",
+    isEnabled: true,
+    isFeatured: false,
+    color: "amber",
+    icon: `<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/></svg>`,
+    bgIcon: "⏱"
+  },
+  {
+    id: 9,
+    name: "Base de Erros SeniorX/WMS",
+    category: "Suporte",
+    categoryTag: "Suporte / Conhecimento",
+    status: "Em desenvolvimento",
+    description: "Biblioteca de erros conhecidos, causas prováveis, soluções recomendadas e histórico de ocorrências dos sistemas SeniorX e WMS.",
+    url: null,
+    isEnabled: false,
+    isFeatured: false,
+    color: "gray",
+    icon: `<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>`,
+    bgIcon: "🛠"
+  }
+];
+
+/* ── HELPERS ── */
+
+/* Determina o status visual real do app:
+   - Se tem URL e isEnabled → "Ativo"
+   - Se não tem URL mas status declarado é "Ativo" → "Link pendente"
+   - Caso contrário → usa o status do dado (Em teste / Em desenvolvimento)
+*/
+function resolvedStatus(app) {
+  if (app.isEnabled && app.url) return "Ativo";
+  if (app.status === "Ativo" && (!app.url || !app.isEnabled)) return "Link pendente";
+  return app.status;
+}
+
+function statusClass(s) {
+  if (s === "Ativo")            return "status-ativo";
+  if (s === "Link pendente")    return "status-link-pendente";
+  if (s === "Em teste")         return "status-teste";
+  return "status-dev";
+}
+
+function statusLabel(s) {
+  const map = {
+    "Ativo":            "Ativo",
+    "Link pendente":    "Link pendente",
+    "Em teste":         "Em teste",
+    "Em desenvolvimento": "Em desenvolvimento"
+  };
+  return map[s] || s;
+}
+
+/* Lógica de botão:
+   - URL presente + isEnabled → "Abrir app" (link ativo, nova aba)
+   - Status "Ativo" mas sem URL → "Configurando link" (desabilitado, ícone de link)
+   - Em teste ou Em desenvolvimento → "Em breve" (desabilitado)
+*/
+function renderButton(app) {
+  if (app.isEnabled && app.url) {
+    return `<a href="${app.url}" target="_blank" rel="noopener noreferrer" class="btn-open primary">
+      Abrir app
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>`;
+  }
+  if (app.status === "Ativo") {
+    return `<button class="btn-open disabled-btn" disabled>
+      Configurando link
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+    </button>`;
+  }
+  return `<button class="btn-open disabled-btn" disabled>
+    Em breve
+    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+  </button>`;
+}
+
+function renderCard(app) {
+  /* Cards "Em desenvolvimento" ficam levemente suavizados, mas legíveis */
+  const cardClass = app.status === "Em desenvolvimento" ? " disabled" : "";
+  const vs = resolvedStatus(app);
+  return `
+    <div class="app-card${cardClass}" data-cat="${app.category}" data-status="${app.status}" data-name="${app.name.toLowerCase()} ${app.description.toLowerCase()}">
+      <div class="card-illustration color-${app.color}">
+        <div class="card-ill-main color-${app.color}">${app.icon}</div>
+        <span class="card-ill-label">${app.categoryTag}</span>
+        <div class="card-ill-icon">${app.bgIcon}</div>
+      </div>
+      <div class="card-body">
+        <div class="card-meta">
+          <span class="card-category">${app.category}</span>
+          <span class="status-badge ${statusClass(vs)}">${statusLabel(vs)}</span>
+        </div>
+        <div class="card-name">${app.name}</div>
+        <p class="card-desc">${app.description}</p>
+        <div class="card-footer">
+          <span class="card-cat-pill">${app.category}</span>
+          ${renderButton(app)}
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+/* ── ESTADO DE FILTROS ── */
+let currentCat    = "Todos";
+let currentStatus = "Todos";
+let currentSearch = "";
+
+/* ── STATS DO HERO (dinâmicos, baseados no total) ── */
+function updateHeroStats() {
+  document.getElementById("stat-total").textContent  = APPS.length;
+  document.getElementById("stat-ativos").textContent = APPS.filter(a => a.status === "Ativo").length;
+  document.getElementById("stat-teste").textContent  = APPS.filter(a => a.status === "Em teste").length;
+  document.getElementById("stat-dev").textContent    = APPS.filter(a => a.status === "Em desenvolvimento").length;
+}
+
+/* ── RENDERIZAÇÃO PRINCIPAL ── */
+function renderAll() {
+  const filtered = APPS.filter(app => {
+    const catOk    = currentCat    === "Todos" || app.category === currentCat;
+    const statusOk = currentStatus === "Todos" || app.status   === currentStatus;
+    const q        = currentSearch;
+    const searchOk = !q || (app.name + " " + app.description + " " + app.categoryTag).toLowerCase().includes(q);
+    return catOk && statusOk && searchOk;
+  });
+
+  /* Seção de destaque: só aparece quando nenhum filtro ativo (exceto busca) */
+  const featuredSection = document.getElementById("featuredSection");
+  const featuredGrid    = document.getElementById("featuredGrid");
+  const showFeatured    = currentCat === "Todos" && currentStatus === "Todos" && !currentSearch;
+
+  if (showFeatured) {
+    const featured = APPS.filter(a => a.isFeatured);
+    featuredGrid.innerHTML = featured.map(renderCard).join("");
+    featuredSection.style.display = "";
+  } else {
+    featuredSection.style.display = "none";
+  }
+
+  /* Grid geral */
+  const grid = document.getElementById("cardsGrid");
+  const resultCount = document.getElementById("resultCount");
+
+  /* No estado padrão, exclui os featured do grid geral para não duplicar */
+  const gridApps = showFeatured ? filtered.filter(a => !a.isFeatured) : filtered;
+
+  if (gridApps.length === 0 && filtered.length === 0) {
+    grid.innerHTML = `<div style="display:flex; flex-direction:column; align-items:center; padding:3rem 1rem; grid-column:1/-1; color:#9E9D9B; text-align:center; gap:0.75rem; background:#fff; border-radius:10px; border:1px solid #E0DFDD;">
+      <svg width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <p style="font-size:13px; color:#6B6A68;">Nenhuma ferramenta encontrada.</p>
+    </div>`;
+    resultCount.textContent = "0 ferramentas";
+  } else {
+    grid.innerHTML = gridApps.map(renderCard).join("");
+    const total = filtered.length;
+    resultCount.textContent = `${total} ferramenta${total !== 1 ? "s" : ""}`;
+  }
+}
+
+/* ── EVENTOS: FILTROS ── */
+document.querySelectorAll(".filter-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const type = btn.dataset.type;
+    const val  = btn.dataset.val;
+
+    /* Desativa outros botões do mesmo grupo */
+    document.querySelectorAll(`.filter-btn[data-type="${type}"]`).forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+
+    if (type === "cat")    currentCat    = val;
+    if (type === "status") currentStatus = val;
+    renderAll();
+  });
+});
+
+/* ── EVENTOS: BUSCA ── */
+document.getElementById("searchInput").addEventListener("input", function() {
+  currentSearch = this.value.toLowerCase().trim();
+  renderAll();
+});
+
+/* ── INIT ── */
+updateHeroStats();
+renderAll();
+</script>
+</body>
+</html>
