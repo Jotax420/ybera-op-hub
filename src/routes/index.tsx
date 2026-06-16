@@ -24,7 +24,6 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   useEffect(() => {
-    // Redirect to the static HTML version so the app runs exactly as approved.
     window.location.replace("/central.html");
   }, []);
 
@@ -33,13 +32,7 @@ function Index() {
       <iframe
         src="/central.html"
         title="Central Operacional Ybera"
-        style={{
-          position: "fixed",
-          inset: 0,
-          width: "100vw",
-          height: "100vh",
-          border: 0,
-        }}
+        style={{ position: "fixed", inset: 0, width: "100vw", height: "100vh", border: 0 }}
       />
     </div>
   );
