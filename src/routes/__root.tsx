@@ -77,14 +77,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      { title: "central Op YBRG" },
+      { name: "description", content: "Ybera Operational Hub centralizes internal operational applications for logistics, inventory, and support." },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:title", content: "central Op YBRG" },
+      { property: "og:description", content: "Ybera Operational Hub centralizes internal operational applications for logistics, inventory, and support." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "central Op YBRG" },
+      { name: "twitter:description", content: "Ybera Operational Hub centralizes internal operational applications for logistics, inventory, and support." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/31b241fc-ef27-47a3-9fbd-793cb913f5b7/id-preview-b4ae2bbb--b08e8230-0fbe-4d60-aaa4-1d504dca4167.lovable.app-1781619313615.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/31b241fc-ef27-47a3-9fbd-793cb913f5b7/id-preview-b4ae2bbb--b08e8230-0fbe-4d60-aaa4-1d504dca4167.lovable.app-1781619313615.png" },
     ],
     links: [
       {
